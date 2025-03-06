@@ -54,7 +54,11 @@ const MapController = ({ coordinates }) => {
 const Home = () => {
   const [searchValue, setSearchValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedFilters, setSelectedFilters] = useState({});
+  const [selectedFilters, setSelectedFilters] = useState({
+    all: true,
+    all_connectors: true,
+    all_power: true
+  });
   const [activeQuickFilters, setActiveQuickFilters] = useState(["showAll"]);
   const [filteredStations, setFilteredStations] = useState(
     chargingStationsData.stations
@@ -83,51 +87,39 @@ const Home = () => {
 
       // Filtro per operatore (quick filters)
       if (activeQuickFilters.length > 0) {
-        // Se "Visualizza tutti" è attivo, mostra tutte le stazioni
         if (activeQuickFilters.includes("showAll")) {
           return true;
         }
-        // Altrimenti filtra per gli operatori selezionati
         if (!activeQuickFilters.includes(station.operator)) {
           return false;
         }
       }
 
       // Filtro per stato della colonnina
-      if (selectedFilters.available && station.status !== "available")
-        return false;
-      if (selectedFilters.occupied && station.status !== "occupied")
-        return false;
-      if (selectedFilters.maintenance && station.status !== "maintenance")
-        return false;
+      if (!selectedFilters.all) {
+        if (selectedFilters.available && station.status !== "available") return false;
+        if (selectedFilters.occupied && station.status !== "occupied") return false;
+        if (selectedFilters.maintenance && station.status !== "maintenance") return false;
+      }
 
       // Filtro per tipo di connettore
-      const hasMatchingConnector = station.connectors.some((connector) => {
-        // Se nessun filtro connettore è selezionato, mostra tutti
-        const noConnectorFilterSelected =
-          !selectedFilters.type2 &&
-          !selectedFilters.ccs &&
-          !selectedFilters.chademo;
+      if (!selectedFilters.all_connectors) {
+        const hasMatchingConnector = station.connectors.some((connector) => {
+          return selectedFilters[connector.type];
+        });
+        if (!hasMatchingConnector) return false;
+      }
 
-        // Verifica se il tipo di connettore corrisponde ai filtri selezionati
-        const matchesType =
-          noConnectorFilterSelected || selectedFilters[connector.type];
+      // Filtro per potenza
+      if (!selectedFilters.all_power) {
+        const hasMatchingPower = station.connectors.some((connector) => {
+          const powerCategory = getPowerCategory(connector.power);
+          return selectedFilters[powerCategory];
+        });
+        if (!hasMatchingPower) return false;
+      }
 
-        // Filtro per potenza
-        const powerCategory = getPowerCategory(connector.power);
-        const noPowerFilterSelected =
-          !selectedFilters.slow &&
-          !selectedFilters.medium &&
-          !selectedFilters.fast &&
-          !selectedFilters.ultrafast;
-
-        const matchesPower =
-          noPowerFilterSelected || selectedFilters[powerCategory];
-
-        return matchesType && matchesPower;
-      });
-
-      return hasMatchingConnector;
+      return true;
     });
 
     setFilteredStations(filtered);
@@ -142,16 +134,19 @@ const Home = () => {
 
   const filterCategories = {
     "Stato Colonnina": [
+      { id: "all", label: "Tutte", isAllOption: true },
       { id: "available", label: "Disponibile" },
       { id: "occupied", label: "Occupata" },
       { id: "maintenance", label: "In Manutenzione" },
     ],
     "Tipo di Connettore": [
+      { id: "all_connectors", label: "Tutte", isAllOption: true },
       { id: "type2", label: "Type 2" },
       { id: "ccs", label: "CCS" },
       { id: "chademo", label: "CHAdeMO" },
     ],
     Potenza: [
+      { id: "all_power", label: "Tutte", isAllOption: true },
       { id: "slow", label: "Lenta (≤ 7.4 kW)" },
       { id: "medium", label: "Media (≤ 22 kW)" },
       { id: "fast", label: "Veloce (≤ 50 kW)" },
@@ -177,11 +172,40 @@ const Home = () => {
     setAnchorEl(null);
   };
 
-  const handleFilterChange = (filterId) => {
-    setSelectedFilters((prev) => ({
-      ...prev,
-      [filterId]: !prev[filterId],
-    }));
+  const handleFilterChange = (filterId, category) => {
+    setSelectedFilters((prev) => {
+      const newFilters = { ...prev };
+      
+      // Trova l'opzione "Tutte" nella categoria
+      const allOption = Object.values(filterCategories[category]).find(
+        (item) => item.isAllOption
+      );
+      
+      // Se si sta selezionando l'opzione "Tutte"
+      if (filterId === allOption.id) {
+        // Se era già selezionata, la deseleziona
+        if (prev[filterId]) {
+          delete newFilters[filterId];
+          return newFilters;
+        }
+        // Se non era selezionata, seleziona solo "Tutte" e deseleziona tutte le altre opzioni della categoria
+        Object.values(filterCategories[category])
+          .filter((item) => !item.isAllOption)
+          .forEach((item) => {
+            delete newFilters[item.id];
+          });
+        newFilters[filterId] = true;
+        return newFilters;
+      }
+      
+      // Se si sta selezionando un filtro normale
+      if (prev[allOption.id]) {
+        // Se "Tutte" era selezionata, la deseleziona
+        delete newFilters[allOption.id];
+      }
+      newFilters[filterId] = !prev[filterId];
+      return newFilters;
+    });
   };
 
   const getSelectedFiltersCount = () => {
@@ -327,7 +351,7 @@ const Home = () => {
               {items.map((item) => (
                 <MenuItem
                   key={item.id}
-                  onClick={() => handleFilterChange(item.id)}
+                  onClick={() => handleFilterChange(item.id, category)}
                   sx={{ py: 0 }}
                 >
                   <FormControlLabel
