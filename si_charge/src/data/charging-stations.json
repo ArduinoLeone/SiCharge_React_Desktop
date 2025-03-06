@@ -1,0 +1,391 @@
+{
+  "stations": [
+    {
+      "id": "PA001",
+      "name": "Enel X Way - Via della Libertà",
+      "operator": "enel_x",
+      "coordinates": [38.1405, 13.35],
+      "address": "Via della Libertà 52, Palermo",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        },
+        {
+          "type": "ccs",
+          "power": 50,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "24/7", "lighting"]
+    },
+    {
+      "id": "PA002",
+      "name": "Be Charge - Porto",
+      "operator": "be_charge",
+      "coordinates": [38.1197, 13.3722],
+      "address": "Via Crispi 36, Palermo",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "lighting"]
+    },
+    {
+      "id": "PA003",
+      "name": "Tesla Supercharger Palermo",
+      "operator": "tesla",
+      "coordinates": [38.1461, 13.3416],
+      "address": "Via Belgio 15, Palermo",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "tesla",
+          "power": 250,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "24/7", "lighting", "wifi"]
+    },
+    {
+      "id": "PA004",
+      "name": "A2A Charging Point",
+      "operator": "a2a",
+      "coordinates": [38.1289, 13.362],
+      "address": "Via Roma 457, Palermo",
+      "status": "occupied",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "occupied"
+        }
+      ],
+      "services": ["parking"]
+    },
+    {
+      "id": "PA005",
+      "name": "Enel X Way - Teatro Massimo",
+      "operator": "enel_x",
+      "coordinates": [38.1186, 13.3589],
+      "address": "Piazza Verdi 1, Palermo",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "lighting"]
+    },
+    {
+      "id": "CT001",
+      "name": "Be Charge - Centro",
+      "operator": "be_charge",
+      "coordinates": [37.5079, 15.083],
+      "address": "Via Etnea 254, Catania",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        },
+        {
+          "type": "ccs",
+          "power": 75,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "24/7", "lighting"]
+    },
+    {
+      "id": "CT002",
+      "name": "Ionity High Power",
+      "operator": "ionity",
+      "coordinates": [37.4567, 15.064],
+      "address": "Viale Kennedy 1, Catania",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "ccs",
+          "power": 350,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "24/7", "lighting", "wifi"]
+    },
+    {
+      "id": "CT003",
+      "name": "Free To X Station",
+      "operator": "free_to_x",
+      "coordinates": [37.5123, 15.0912],
+      "address": "Via Vittorio Emanuele II 182, Catania",
+      "status": "maintenance",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "maintenance"
+        },
+        {
+          "type": "chademo",
+          "power": 50,
+          "status": "maintenance"
+        }
+      ],
+      "services": ["parking"]
+    },
+    {
+      "id": "ME001",
+      "name": "Enel X Way - Stazione",
+      "operator": "enel_x",
+      "coordinates": [38.1833, 15.55],
+      "address": "Piazza della Repubblica 1, Messina",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "lighting"]
+    },
+    {
+      "id": "ME002",
+      "name": "Be Charge - Porto",
+      "operator": "be_charge",
+      "coordinates": [38.1922, 15.5619],
+      "address": "Via Garibaldi 123, Messina",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        },
+        {
+          "type": "ccs",
+          "power": 50,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "24/7"]
+    },
+    {
+      "id": "SR001",
+      "name": "A2A Ortigia",
+      "operator": "a2a",
+      "coordinates": [37.0667, 15.2833],
+      "address": "Via Roma 25, Siracusa",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "lighting"]
+    },
+    {
+      "id": "SR002",
+      "name": "Enel X Way - Centro",
+      "operator": "enel_x",
+      "coordinates": [37.075, 15.2861],
+      "address": "Corso Umberto 87, Siracusa",
+      "status": "occupied",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "occupied"
+        }
+      ],
+      "services": ["parking"]
+    },
+    {
+      "id": "TP001",
+      "name": "Be Charge - Porto",
+      "operator": "be_charge",
+      "coordinates": [38.0178, 12.5367],
+      "address": "Via XXX Gennaio 15, Trapani",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "lighting"]
+    },
+    {
+      "id": "TP002",
+      "name": "Free To X Station",
+      "operator": "free_to_x",
+      "coordinates": [38.0167, 12.54],
+      "address": "Via G.B. Fardella 256, Trapani",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        },
+        {
+          "type": "ccs",
+          "power": 75,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "24/7", "wifi"]
+    },
+    {
+      "id": "RG001",
+      "name": "Enel X Way - Marina",
+      "operator": "enel_x",
+      "coordinates": [36.9167, 14.7167],
+      "address": "Lungomare Mediterraneo 38, Ragusa",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "lighting"]
+    },
+    {
+      "id": "RG002",
+      "name": "Be Charge - Centro",
+      "operator": "be_charge",
+      "coordinates": [36.925, 14.7333],
+      "address": "Via Roma 123, Ragusa",
+      "status": "maintenance",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "maintenance"
+        }
+      ],
+      "services": ["parking"]
+    },
+    {
+      "id": "EN001",
+      "name": "A2A Charging Point",
+      "operator": "a2a",
+      "coordinates": [37.5667, 14.2833],
+      "address": "Via Roma 45, Enna",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "lighting"]
+    },
+    {
+      "id": "CL001",
+      "name": "Enel X Way - Centro",
+      "operator": "enel_x",
+      "coordinates": [37.4833, 14.0667],
+      "address": "Corso Umberto 78, Caltanissetta",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        }
+      ],
+      "services": ["parking"]
+    },
+    {
+      "id": "AG001",
+      "name": "Be Charge - Valle dei Templi",
+      "operator": "be_charge",
+      "coordinates": [37.3089, 13.5858],
+      "address": "Via dei Templi 1, Agrigento",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        },
+        {
+          "type": "ccs",
+          "power": 50,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "24/7", "lighting"]
+    },
+    {
+      "id": "PA006",
+      "name": "Tesla Supercharger Forum",
+      "operator": "tesla",
+      "coordinates": [38.13, 13.3514],
+      "address": "Via Filippo Pecoraino 1, Palermo",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "tesla",
+          "power": 250,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "24/7", "lighting", "wifi", "shopping"]
+    },
+    {
+      "id": "CT004",
+      "name": "Ionity - Centro Commerciale",
+      "operator": "ionity",
+      "coordinates": [37.4834, 15.0534],
+      "address": "Via Gelso Bianco 1, Catania",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "ccs",
+          "power": 350,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "24/7", "lighting", "wifi", "shopping"]
+    },
+    {
+      "id": "ME003",
+      "name": "Free To X - Autostrada",
+      "operator": "free_to_x",
+      "coordinates": [38.1945, 15.5534],
+      "address": "A20 Dir. Palermo, Messina",
+      "status": "available",
+      "connectors": [
+        {
+          "type": "type2",
+          "power": 22,
+          "status": "available"
+        },
+        {
+          "type": "ccs",
+          "power": 100,
+          "status": "available"
+        }
+      ],
+      "services": ["parking", "24/7", "food", "restroom"]
+    }
+  ]
+}
