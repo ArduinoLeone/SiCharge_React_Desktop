@@ -57,7 +57,7 @@ const Home = () => {
   const [selectedFilters, setSelectedFilters] = useState({
     showAll: true
   });
-  const [activeQuickFilters, setActiveQuickFilters] = useState([]);
+  const [activeQuickFilters, setActiveQuickFilters] = useState(["showAll"]);
   const [filteredStations, setFilteredStations] = useState(
     chargingStationsData.stations
   );
