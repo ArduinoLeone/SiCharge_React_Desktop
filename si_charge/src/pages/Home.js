@@ -358,10 +358,7 @@ const Home = () => {
           mt: 1,
           flexWrap: "wrap",
           justifyContent: "center",
-          backgroundColor: "rgba(255, 255, 255, 0.9)",
           padding: "12px",
-          borderRadius: "8px",
-          boxShadow: "0 1px 8px rgba(0, 0, 0, 0.05)",
           margin: "12px auto",
           maxWidth: "800px",
         }}
