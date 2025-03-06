@@ -54,9 +54,7 @@ const MapController = ({ coordinates }) => {
 const Home = () => {
   const [searchValue, setSearchValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedFilters, setSelectedFilters] = useState({
-    showAll: true
-  });
+  const [selectedFilters, setSelectedFilters] = useState({});
   const [activeQuickFilters, setActiveQuickFilters] = useState(["showAll"]);
   const [filteredStations, setFilteredStations] = useState(
     chargingStationsData.stations
