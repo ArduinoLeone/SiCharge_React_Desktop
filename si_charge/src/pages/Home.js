@@ -54,7 +54,9 @@ const MapController = ({ coordinates }) => {
 const Home = () => {
   const [searchValue, setSearchValue] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedFilters, setSelectedFilters] = useState({});
+  const [selectedFilters, setSelectedFilters] = useState({
+    showAll: true
+  });
   const [activeQuickFilters, setActiveQuickFilters] = useState([]);
   const [filteredStations, setFilteredStations] = useState(
     chargingStationsData.stations
@@ -82,11 +84,15 @@ const Home = () => {
       }
 
       // Filtro per operatore (quick filters)
-      if (
-        activeQuickFilters.length > 0 &&
-        !activeQuickFilters.includes(station.operator)
-      ) {
-        return false;
+      if (activeQuickFilters.length > 0) {
+        // Se "Visualizza tutti" è attivo, mostra tutte le stazioni
+        if (activeQuickFilters.includes("showAll")) {
+          return true;
+        }
+        // Altrimenti filtra per gli operatori selezionati
+        if (!activeQuickFilters.includes(station.operator)) {
+          return false;
+        }
       }
 
       // Filtro per stato della colonnina
@@ -156,6 +162,7 @@ const Home = () => {
   };
 
   const quickFilters = [
+    { id: "showAll", label: "Visualizza tutti", color: "#4CAF50" },
     { id: "enel_x", label: "Enel X", color: "#00488F" },
     { id: "be_charge", label: "Be Charge", color: "#00B0B9" },
     { id: "a2a", label: "A2A E-moving", color: "#FF8F19" },
@@ -184,11 +191,25 @@ const Home = () => {
   };
 
   const handleQuickFilterClick = (filterId) => {
-    setActiveQuickFilters((prev) =>
-      prev.includes(filterId)
+    setActiveQuickFilters((prev) => {
+      // Se si clicca su "Visualizza tutti"
+      if (filterId === "showAll") {
+        // Se era già attivo, lo disattiva
+        if (prev.includes(filterId)) {
+          return [];
+        }
+        // Se era disattivo, lo attiva e disattiva tutti gli altri
+        return ["showAll"];
+      }
+      
+      // Se si clicca su un altro filtro
+      const newFilters = prev.includes(filterId)
         ? prev.filter((id) => id !== filterId)
-        : [...prev, filterId]
-    );
+        : [...prev.filter(id => id !== "showAll"), filterId];
+      
+      // Se non ci sono filtri attivi, riattiva "Visualizza tutti"
+      return newFilters.length === 0 ? ["showAll"] : newFilters;
+    });
   };
 
   const handleSearchChange = (event, newValue) => {
@@ -365,11 +386,13 @@ const Home = () => {
               },
               fontWeight: 500,
               transition: "all 0.2s ease",
-              padding: "8px 12px",
-              height: "32px",
+              padding: "6px 12px",
+              height: "28px",
               fontSize: "0.875rem",
+              borderRadius: "4px",
               "& .MuiChip-label": {
                 padding: "0 4px",
+                lineHeight: 1,
               },
             }}
           />

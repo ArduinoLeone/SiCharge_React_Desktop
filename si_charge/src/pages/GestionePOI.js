@@ -336,6 +336,12 @@ const GestionePOI = () => {
                         (op) => op.id === station.operator
                       )?.color,
                       color: "white",
+                      borderRadius: "4px",
+                      height: "28px",
+                      "& .MuiChip-label": {
+                        padding: "0 4px",
+                        lineHeight: 1,
+                      },
                     }}
                   />
                 </TableCell>
@@ -350,6 +356,14 @@ const GestionePOI = () => {
                         ? "warning"
                         : "error"
                     }
+                    sx={{
+                      borderRadius: "4px",
+                      height: "28px",
+                      "& .MuiChip-label": {
+                        padding: "0 4px",
+                        lineHeight: 1,
+                      },
+                    }}
                   />
                 </TableCell>
                 <TableCell>
@@ -359,6 +373,14 @@ const GestionePOI = () => {
                         key={idx}
                         label={`${connector.type} (${connector.power}kW)`}
                         size="small"
+                        sx={{
+                          borderRadius: "4px",
+                          height: "24px",
+                          "& .MuiChip-label": {
+                            padding: "0 4px",
+                            lineHeight: 1,
+                          },
+                        }}
                       />
                     ))}
                   </Stack>
@@ -371,6 +393,14 @@ const GestionePOI = () => {
                         label={service}
                         size="small"
                         variant="outlined"
+                        sx={{
+                          borderRadius: "4px",
+                          height: "24px",
+                          "& .MuiChip-label": {
+                            padding: "0 4px",
+                            lineHeight: 1,
+                          },
+                        }}
                       />
                     ))}
                   </Stack>
